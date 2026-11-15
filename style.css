@@ -1,0 +1,177 @@
+:root {
+    --bg-light: #fff7f1;
+    --card-light: #ffeabf;
+    --text-light: #f8f4f4;
+    --primary-light: #9b465b;
+    --secondary-light: #3b8e97;
+
+    --bg-dark: #2c2c2c;
+    --card-dark: #44475a;
+    --text-dark: #000000;
+    --primary-dark: #8be9fd;
+    --secondary-dark: #ffb86c;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Using 'Inter' as per instructions, fallback to 'Quicksand' if not available */
+    font-family: 'Inter', 'Quicksand', sans-serif;
+    transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    display: flex;
+    /* Stack elements vertically */
+    flex-direction: column;
+    /* Center content vertically */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Ensure body takes full viewport height */
+    min-height: 100vh; /* Use min-height to allow content to push body height if needed */
+    padding: 1rem; /* Consistent padding around the content */
+    overflow-x: hidden; /* Prevent horizontal scrollbar on small screens */
+}
+
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+#theme-toggle {
+    background: var(--secondary-light);
+    color: var(--text-light);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem; /* Relative unit for font size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Space between calculator and button */
+    margin-top: 1.5rem;
+    /* Ensure the button doesn't shrink on smaller screens */
+    flex-shrink: 0;
+	max-width: 200px;
+}
+
+body.dark #theme-toggle {
+    background: var(--secondary-dark);
+    color: var(--text-dark);
+}
+
+#calculator {
+    background-color: var(--card-light);
+    border-radius: 20px;
+    padding: 1.5rem; /* Consistent padding */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    max-width: 400px; /* Max width for larger screens */
+    width: 100%; /* Take full width on smaller screens */
+    /* Ensure the calculator doesn't shrink on smaller screens */
+    flex-shrink: 0;
+    /* Add a bit of margin-bottom for spacing if content below is added */
+    margin-bottom: 1.5rem;
+}
+
+body.dark #calculator {
+    background-color: var(--card-dark);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+#display {
+    width: 100%;
+    height: 60px; /* Fixed height for consistency */
+    background: var(--primary-light);
+    color: var(--text-light);
+    border: none;
+    border-radius: 10px;
+    font-size: 2rem; /* Relative unit for font size */
+    padding: 0.5rem 1rem; /* Consistent padding */
+    text-align: right;
+    margin-bottom: 1rem;
+}
+
+body.dark #display {
+    background: var(--primary-dark);
+    color: var(--text-dark);
+}
+
+#keys {
+    display: grid;
+    /* Use 1fr for flexible column sizing */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem; /* Consistent gap between buttons */
+}
+
+button {
+    padding: 1rem; /* Consistent padding */
+    font-size: 1.25rem; /* Relative unit for font size */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: var(--secondary-light);
+    color: var(--text-light);
+    font-weight: bold;
+    /* Ensure buttons fill their grid cell */
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content/padding */
+}
+
+button.operator-btn {
+    background-color: var(--primary-light);
+}
+
+button:hover {
+    transform: scale(1.05); /* Subtle scale effect on hover */
+    opacity: 0.9;
+}
+
+body.dark button {
+    background-color: var(--secondary-dark);
+    color: var(--text-dark);
+}
+
+body.dark button.operator-btn {
+    background-color: var(--primary-dark);
+}
+
+/* Media queries for fine-tuning on smaller screens */
+@media (max-width: 480px) {
+    #calculator {
+        padding: 1rem; /* Slightly less padding on very small screens */
+    }
+    #display {
+        font-size: 1.8rem; /* Adjust font size for display on small screens */
+        height: 55px;
+    }
+    button {
+        font-size: 1.1rem; /* Adjust button font size on small screens */
+        padding: 0.8rem;
+    }
+    #theme-toggle {
+        font-size: 0.9rem; /* Adjust theme toggle font size */
+        padding: 0.4rem 1rem; /* Adjust theme toggle padding */
+    }
+}
+
+@media (max-width: 320px) {
+    #calculator {
+        padding: 0.75rem; /* Even less padding on extremely small screens */
+    }
+    #display {
+        font-size: 1.6rem;
+        height: 50px;
+    }
+    button {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+    #theme-toggle {
+        font-size: 0.8rem; /* Further adjust theme toggle font size */
+        padding: 0.3rem 0.8rem; /* Further adjust theme toggle padding */
+    }
+}
